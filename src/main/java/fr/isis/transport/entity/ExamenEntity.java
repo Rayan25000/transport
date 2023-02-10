@@ -13,7 +13,7 @@ public class ExamenEntity {
     @Column(name = "numexamen")
     private Integer numexamen;
     @Basic
-    @Column(name = "ipp")
+    @Column(name = "ipp", insertable = false, updatable = false)
     private Integer ipp;
     @Basic
     @Column(name = "type")
@@ -33,6 +33,18 @@ public class ExamenEntity {
     @Basic
     @Column(name = "commentaire")
     private String commentaire;
+
+    public PatientEntity getPatientByIpp() {
+        return patientByIpp;
+    }
+
+    public void setPatientByIpp(PatientEntity patientByIpp) {
+        this.patientByIpp = patientByIpp;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ipp", referencedColumnName = "ipp", nullable = false)
+    private PatientEntity patientByIpp;
 
     public Integer getNumexamen() {
         return numexamen;
